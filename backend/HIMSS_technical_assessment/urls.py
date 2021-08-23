@@ -1,4 +1,4 @@
-"""shared_budget URL Configuration
+"""HIMSS_technical_assessment URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -22,8 +22,8 @@ from rest_framework_simplejwt.views import (
 from rest_framework.routers import DefaultRouter
 from api import views
 
-router = DefaultRouter()
-router.register(r'expenses', views.ExpenseView)
+# router = DefaultRouter()
+# router.register(r'expenses', views.ExpenseView)
 
 
 urlpatterns = [
@@ -31,5 +31,5 @@ urlpatterns = [
 	path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
 	path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 	path('api/', include('api.urls')),
-    path('api/', include(router.urls)),
+    # path('api/', include(router.urls)),
 ]

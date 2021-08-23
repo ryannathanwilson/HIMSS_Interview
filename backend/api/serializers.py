@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import Expenses, ExpenseCategories
+from .models import Report, Reference, Payload
+
+# todo: delete UserSerializer if not used
 class UserSerializer(serializers.ModelSerializer): 
 	email = serializers.EmailField( required=True )
 	username = serializers.CharField() 
@@ -14,20 +16,22 @@ class UserSerializer(serializers.ModelSerializer):
 	def create(self, validated_data): 
 		password = validated_data.pop('password', None) 
 		instance = self.Meta.model(**validated_data) 
-		# as long as the fields are the same, we can just use this if password is not None: 
 		instance.set_password(password) 
 		instance.save() 
 		return instance
 
-class ExpensesSerializer(serializers.ModelSerializer):
-
+class ReportSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Expenses
+		model = Report
 		fields = '__all__'
 		
 	
-class ExpenseCategoriesSerializer(serializers.ModelSerializer):
-	# category = serializers.CharField()
+class ReferenceSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = ExpenseCategories
+		model = Reference
+		fields = '__all__'
+
+class PayloadSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Payload
 		fields = '__all__'

@@ -34,7 +34,10 @@ Project guidelines here:
     - Create dummy component to write data/reports.json to backend
 
 ## Challenges
-- How to format data model?
+- How to format data model, specifically "sub objects"?
+	- Multiple tables with foreign key
+- How to write to multiple tables with one layered object
+- How to do a put request
 - Should resolving simply delete a report?
     - I would prefer to mark "resolved" column to true
     - Archive periodically

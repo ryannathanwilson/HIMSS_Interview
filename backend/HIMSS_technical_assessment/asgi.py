@@ -1,5 +1,5 @@
 """
-ASGI config for shared_budget project.
+ASGI config for HIMSS_technical_assessment project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'shared_budget.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'HIMSS_technical_assessment.settings')
 
 application = get_asgi_application()
