@@ -1,16 +1,16 @@
-# HIMSS Technical Assessment #
+# HIMSS Technical Assessment
 
 Project guidelines here:
-- (morkro/coding-challenge)[https://github.com/morkro/coding-challenge]
+- [morkro/coding-challenge](https://github.com/morkro/coding-challenge)
 
 
-##Project Objectives##
+## Project Objectives
 - Create running full stack application for spam protection
 - Copy UI provided in project README
 - Block content
 - Resolve content with PUT request to /reports/:reportId
 
-##Project Plan##
+## Project Plan
 - Use Django and React
     - I'm most familiar with these two platforms
     - Django has built in functionality for REST APIs
@@ -25,7 +25,7 @@ Project guidelines here:
     - Create endpoint for blocking
         - Write code that runs at blockig endpoint
     - Create endpoint for resolving
-        - Write codet aht runs at resolving endpoint
+        - Write code that runs at resolving endpoint
 - Frontend / React
     - Create hook to get data
     - Create component to display data
@@ -33,7 +33,7 @@ Project guidelines here:
     - Create hook to resolve Data
     - Create dummy component to write data/reports.json to backend
 
-##Challenges##
+## Challenges
 - How to format data model?
 - Should resolving simply delete a report?
     - I would prefer to mark "resolved" column to true
@@ -41,6 +41,7 @@ Project guidelines here:
 - How to block?
     - Set state to "BLOCKED"
 
-##Next Step Features##
+## Next Step Features
 - Authentication
 - Toggle hide/show "BLOCKED" reports
+- Testing
