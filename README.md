@@ -9,8 +9,9 @@ git clone git@github.com:ryannathanwilson/HIMSS_Interview.git
 ```
 
 ### Backend
+Run the following bash commands to install the backend and run local django server.
 ```
-cd backend
+cd HIMSS_Interview/backend
 python3 -m venv .
 source bin/activate // or 'source Scripts/activate'
 pip install -r requirements.txt
@@ -19,8 +20,9 @@ python manage.py runserver
 ```
 
 ### Frontend
+In a separate bash instance, run the following commands to install react/node dependencies and run local node server.
 ```
-cd frontend
+cd HIMSS_Interview/frontend
 npm install
 npm start
 ```
@@ -59,14 +61,18 @@ npm start
 	- Multiple tables with foreign key
 - How to write to multiple tables with one layered object
 - How to do a put request
+    - PUT request works natively, but needs to be modified to include partial_update objects.
 - Should resolving simply delete a report?
     - I would prefer to mark "resolved" column to true
     - Archive periodically
+    - If deleting, the use pre-delete signal to also delete existing sub-objects
 - How to block?
     - Set state to "BLOCKED"
+    - Configure "partial_update()"
 
 ## Next Step Features
 - Authentication
 - Toggle hide/show "BLOCKED" reports
 - Testing
+- Add loading state during async function operation
 
