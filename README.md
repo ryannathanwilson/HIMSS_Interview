@@ -4,9 +4,12 @@ Project guidelines here:
 - [morkro/coding-challenge](https://github.com/morkro/coding-challenge)
 
 ## Installation
-### Backend
 ```
 git clone git@github.com:ryannathanwilson/HIMSS_Interview.git
+```
+
+### Backend
+```
 cd backend
 python3 -m venv .
 source bin/activate // or 'source Scripts/activate'
