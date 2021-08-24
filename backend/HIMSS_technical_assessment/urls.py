@@ -22,8 +22,10 @@ from rest_framework_simplejwt.views import (
 from rest_framework.routers import DefaultRouter
 from api import views
 
-# router = DefaultRouter()
-# router.register(r'expenses', views.ExpenseView)
+router = DefaultRouter()
+router.register(r'reports', views.ReportView)
+router.register(r'references', views.ReferenceView)
+router.register(r'payload', views.PayloadView)
 
 
 urlpatterns = [
@@ -31,5 +33,5 @@ urlpatterns = [
 	path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
 	path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 	path('api/', include('api.urls')),
-    # path('api/', include(router.urls)),
+    path('api/', include(router.urls)),
 ]

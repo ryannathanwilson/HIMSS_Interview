@@ -15,6 +15,7 @@ backend/lib
 backend/include
 
 frontend/node_modules
+frontend/public
 frontend/.pnp
 frontend/.pnp.js
 frontend/coverage

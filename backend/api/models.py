@@ -6,13 +6,13 @@ class Report(models.Model):
 	reference = models.ForeignKey('Reference', on_delete=models.CASCADE)
 	state = models.CharField(max_length=100)
 	payload = models.ForeignKey('Payload', on_delete=models.CASCADE)
-	created = models.DateField() #check formatting
+	created = models.DateTimeField()
 
 	def __str__(self):
 		return f"Report ID: {self.id}, state: {self.state}"
 	
 class Reference(models.Model):
-	referenceId = models.CharField(max_length=100)
+	referenceId = models.CharField(primary_key=True, max_length=100)
 	referenceType = models.CharField(max_length=100)
 	
 	def __str__(self):
@@ -21,7 +21,7 @@ class Reference(models.Model):
 class Payload(models.Model):
 	source = models.CharField(max_length=100)
 	reportType = models.CharField(max_length=100)
-	message = models.CharField(max_length=100)
+	message = models.CharField(max_length=100, null=True)
 	reportId = models.CharField(max_length=100)
-	referenceResourceId = models.CharField(max_length=100)
+	referenceResourceId = models.CharField(primary_key=True, max_length=100)
 	referenceResourceType = models.CharField(max_length=100)

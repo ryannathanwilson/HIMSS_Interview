@@ -9,10 +9,23 @@ import json
 from datetime import datetime
 
 
-# class ExpenseView(viewsets.ModelViewSet):
-#     queryset = Expenses.objects.all()
-#     serializer_class = ExpensesSerializer
-#     permission_classes = [IsAuthenticated]
+class ReportView(viewsets.ModelViewSet):
+    queryset = Report.objects.all()
+    serializer_class = ReportSerializer
+    # permission_classes = [IsAuthenticated]
+
+class ReferenceView(viewsets.ModelViewSet):
+    queryset = Reference.objects.all()
+    serializer_class = ReferenceSerializer
+    # permission_classes = [IsAuthenticated]
+
+class PayloadView(viewsets.ModelViewSet):
+    queryset = Payload.objects.all()
+    serializer_class = PayloadSerializer
+    # permission_classes = [IsAuthenticated]
+
+
+
 
 # @api_view(['GET'])
 # def current_user(request):
