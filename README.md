@@ -3,6 +3,24 @@
 Project guidelines here:
 - [morkro/coding-challenge](https://github.com/morkro/coding-challenge)
 
+## Installation
+### Backend
+```
+git clone git@github.com:ryannathanwilson/HIMSS_Interview.git
+cd backend
+python3 -m venv .
+source bin/activate // or 'source Scripts/activate'
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+### Frontend
+```
+cd frontend
+npm install
+npm start
+```
 
 ## Project Objectives
 - Create running full stack application for spam protection
@@ -49,17 +67,3 @@ Project guidelines here:
 - Toggle hide/show "BLOCKED" reports
 - Testing
 
-## Installation
-### Backend
-- git clone git@github.com:ryannathanwilson/HIMSS_Interview.git
-- cd backend
-- python3 -m venv .
-- source bin/activate (or 'source Scripts/activate')
-- pip install -r requirements.txt
-- python manage.py migrate
-- python manage.py runserver
-
-### Frontend
-- cd frontend
-- npm install
-- npm start
