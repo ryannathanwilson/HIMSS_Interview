@@ -13,8 +13,8 @@ const SpamCard = (props) => {
                 <div className="message">Message: l;kasdjf;jalks</div>
             </div>
             <div className={styles.column}>
-                <div class={styles.button} role="button">Block</div>
-                <div class={styles.button} role="button">Resolve</div>
+                <div className={styles.button} role="button">Block</div>
+                <div className={styles.button} role="button">Resolve</div>
             </div>
         </div>
     );

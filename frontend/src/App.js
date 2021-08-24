@@ -1,19 +1,7 @@
-import React, { useEffect, useState, Error } from "react";
+import React, { useEffect} from "react";
 import SpamCard from "./components/SpamCard";
 
 function App() {
-  const [username, setUsername] = useState("");
-  const handleUsername = (e) => {
-    setUsername(e.target.value);
-  };
-  const [password, setPassword] = useState("");
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const handleLoginState = (loggedIn) => {
-    setIsLoggedIn(loggedIn);
-  };
 
   const getReports = async () => {
     let response = await fetch("http://127.0.0.1:8000/api/reports/", {

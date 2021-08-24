@@ -48,3 +48,18 @@ Project guidelines here:
 - Authentication
 - Toggle hide/show "BLOCKED" reports
 - Testing
+
+## Installation
+### Backend
+- git clone git@github.com:ryannathanwilson/HIMSS_Interview.git
+- cd backend
+- python3 -m venv .
+- source bin/activate (or 'source Scripts/activate')
+- pip install -r requirements.txt
+- python manage.py migrate
+- python manage.py runserver
+
+### Frontend
+- cd frontend
+- npm install
+- npm start
