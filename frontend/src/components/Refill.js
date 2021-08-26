@@ -513,7 +513,7 @@ const Refill = (props) => {
         });
     };
 
-    // extract reports with foreign keys rather than foreign objects
+    // extract reports format with foreign keys rather than foreign objects
     const reports = [
         ...suppliedData.map((report) => {
             const simpleReport = {
@@ -529,14 +529,14 @@ const Refill = (props) => {
             return simpleReport;
         }),
     ];
-	
+
     const createReports = (items) => {
         items.forEach((item) => {
             postData(item, "reports");
         });
     };
 
-	// general helper function
+    // general helper function deletes single item from endpoint
     const deleteData = async (category, id) => {
         let response = await fetch(
             `http://127.0.0.1:8000/api/${category}/${id}/`,
@@ -548,13 +548,13 @@ const Refill = (props) => {
             }
         );
         if (response.ok) {
-			console.log("deleted successfull");
+            console.log("deleted successfull");
         } else {
             console.log("failed to delete");
         }
     };
 
-	// general helper function
+    // general helper function, posts single item to endpoint
     const postData = async (dataObject, category) => {
         let response = await fetch(`http://127.0.0.1:8000/api/${category}/`, {
             method: "POST",
@@ -565,14 +565,14 @@ const Refill = (props) => {
         });
         let data = await response.json();
         if (response.ok) {
-			console.log("created succesfully");
+            console.log("created succesfully");
             return data;
         } else {
             return Promise.reject(response);
         }
     };
 
-	// timeout to ensure they are created in order
+    // setTimeout to ensure they are created in order
     const refillAllData = async () => {
         createReferences(references);
         setTimeout(() => {
@@ -585,7 +585,7 @@ const Refill = (props) => {
             }, 1000);
         }, 1000);
     };
-
+    // return two buttons, delete all data, and create all data
     return (
         <div>
             <button

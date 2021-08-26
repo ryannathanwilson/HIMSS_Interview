@@ -17,7 +17,7 @@ function App() {
     };
     useEffect(() => {
         getReports();
-    }, []); // empty dependency array just runs once!
+    }, []); // empty dependency array just runs once on page load.
 
     return (
         <div className="RNW-Accelerate">
