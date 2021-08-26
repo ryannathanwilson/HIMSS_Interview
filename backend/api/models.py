@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 class Report(models.Model):
-	id = models.CharField(primary_key=True, max_length=100) # todo: can I set this myself?
+	id = models.CharField(primary_key=True, max_length=100) 
 	source = models.CharField(max_length=100)
 	reference = models.ForeignKey('Reference', on_delete=models.CASCADE)
 	state = models.CharField(max_length=100)
