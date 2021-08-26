@@ -33,18 +33,18 @@ const SpamCard = (props) => {
 	
     return (
         <div className={styles.card}>
-            <div className={styles.column}>
-                <div className="report-id">Id: {props.reportId}</div>
-                <div className="state">State: {props.state}</div>
+            <div className={`${styles.column} ${styles.column_content}`}>
+                <div><strong>Id: </strong>{props.reportId}</div>
+                <div><strong>State: </strong><span className={props.state === 'OPEN' ? styles.open_text : styles.blocked_text}>{props.state}</span></div>
                 <div className={styles.details}>Details</div>
             </div>
-            <div className={styles.column}>
-                <div className="type">Type: {props.type}</div>
-                <div className="message">Message: {props.message}</div>
+            <div className={`${styles.column} ${styles.column_content}`}>
+                <div><strong>Type: </strong>{props.type}</div>
+                <div><strong>Message: </strong>{props.message}</div>
             </div>
-            <div className={styles.column}>
-                <div className={styles.button} role="button" onClick={() => handleBlocking(props.referenceId)}>Block</div>
-                <div className={styles.button} role="button" onClick={() => handleResolving(props.reportId)}>Resolve</div>
+            <div className={`${styles.column} ${styles.column_buttons}`}>
+                <button className={styles.button} role="button" onClick={() => handleBlocking(props.referenceId)}>Block</button>
+                <button className={styles.button} role="button" onClick={() => handleResolving(props.reportId)}>Resolve</button>
             </div>
         </div>
     );

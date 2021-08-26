@@ -37,7 +37,7 @@ npm start
 - Use Django and React
     - I'm most familiar with these two platforms
     - Django has built in functionality for REST APIs
-    - Django has many additional useful features in its ecosystem including authentication
+    - Django has many additional useful features in its ecosystem, if this project were further developed, such as authentication.
     - React is widely used, making it easy to find engineers to work on it.
     - React works well when API calls are being made, and state needs to be updated appropriately
 - Backend / Django
@@ -45,42 +45,39 @@ npm start
     - Create serializers
     - Create endpoint for reading all the data
     - Create endpoint for writing data
-    - Create endpoint for blocking
-        - Write code that runs at blockig endpoint
-    - Create endpoint for resolving
-        - Write code that runs at resolving endpoint
+    - Create script for blocking
+        - Write code that modifies patch function to run on PUT request
+    - Create script for resolving
+        - Same principle as blocking. Ensure resolved reports are removed from GET Report
 - Frontend / React
-    - Create hook to get data
+    - Create function to get data
     - Create component to display data
-    - Create hook to block data
-    - Create hook to resolve Data
+    - Create function to block data
+    - Create function to resolve Data
     - Create dummy component to write data/reports.json to backend
 
 ## Challenges
-- How to format data model, specifically "sub objects"?
+- How to format data model, specifically "sub objects".
 	- Multiple tables with foreign key
-- How to write to multiple tables with one layered object
+	- Reference is primary object
+		- Payload describes the Reference
+		- Multiple reports may refer to the same reference, presumably multiple people have reported the same piece of spam.
+- How to write to multiple tables with one layered object.
+	- Nested serializers allow easy reading of all the layers
+	- Standard serializers can then write to the separate tables.
 - How to do a put request
     - PUT request works natively, but needs to be modified to include partial_update objects.
 - Should resolving simply delete a report?
-    - I would prefer to mark "resolved" column to true
-    - Archive periodically
-    - If deleting, the use pre-delete signal to also delete existing sub-objects
+    - Report might be important for other functions, so add "ticketState" and update as per instruction.
 - How to block?
     - Set state to "BLOCKED"
     - Configure "partial_update()"
+	- Block the reference, so that all reports that correspond to that report will be updated as well.
 
 ## Next Step Features
 - Authentication
 - Toggle hide/show "BLOCKED" reports
 - Testing
 - Add loading state during async function operation
-- Animate card disappearing
-- Properly chain "refill data"
-- loading spinners
-
-todo: make page responsive
-todo: new title
-todo: prettier loading buttons
-todo: cleanup code!
-
+	- Move logic for complex write and delete to the backend.
+- Animate card disappearing so it's visually obvious to user, that it has disappeard.

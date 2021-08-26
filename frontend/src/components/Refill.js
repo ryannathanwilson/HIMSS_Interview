@@ -486,15 +486,18 @@ const Refill = (props) => {
             suppliedData.map((report) => JSON.stringify(report.reference))
         ),
     ].map((string) => JSON.parse(string));
+
     const createReferences = (items) => {
         items.forEach(async (item) => {
             await postData(item, "references");
         });
     };
+
     const deleteReferences = (items) => {
         items.forEach((item) => {
             deleteData("references", item.referenceId);
         });
+        setTimeout(props.getReports, 1000);
     };
 
     //extract unique payload objects
@@ -503,16 +506,12 @@ const Refill = (props) => {
             suppliedData.map((report) => JSON.stringify(report.payload))
         ),
     ].map((string) => JSON.parse(string));
+
     const createPayloads = (items) => {
         items.forEach(async (item) => {
             await postData(item, "payloads");
         });
     };
-    // const deletePayloads = (items) => {
-    //     items.forEach((item) => {
-    //         deleteData(item.referenceResourceId);
-    //     });
-    // };
 
     // extract reports with foreign keys rather than foreign objects
     const reports = [
@@ -530,11 +529,14 @@ const Refill = (props) => {
             return simpleReport;
         }),
     ];
+	
     const createReports = (items) => {
         items.forEach((item) => {
             postData(item, "reports");
         });
     };
+
+	// general helper function
     const deleteData = async (category, id) => {
         let response = await fetch(
             `http://127.0.0.1:8000/api/${category}/${id}/`,
@@ -545,14 +547,14 @@ const Refill = (props) => {
                 },
             }
         );
-		if (response.ok) {
-			console.log(response);
-		} else {
-			console.log('failed to delete');
-		}
-        props.getReports();
+        if (response.ok) {
+			console.log("deleted successfull");
+        } else {
+            console.log("failed to delete");
+        }
     };
 
+	// general helper function
     const postData = async (dataObject, category) => {
         let response = await fetch(`http://127.0.0.1:8000/api/${category}/`, {
             method: "POST",
@@ -563,22 +565,23 @@ const Refill = (props) => {
         });
         let data = await response.json();
         if (response.ok) {
+			console.log("created succesfully");
             return data;
         } else {
             return Promise.reject(response);
         }
     };
 
+	// timeout to ensure they are created in order
     const refillAllData = async () => {
-        // todo, make sure objects are created in order
         createReferences(references);
         setTimeout(() => {
             createPayloads(payloads);
             setTimeout(() => {
                 createReports(reports);
-				setTimeout(() => {
-					props.getReports();
-				},1000);
+                setTimeout(() => {
+                    props.getReports();
+                }, 1000);
             }, 1000);
         }, 1000);
     };
@@ -593,7 +596,7 @@ const Refill = (props) => {
                 Delete Data
             </button>
 
-            <button onClick={refillAllData}>Refill Data</button>
+            <button onClick={refillAllData}>Add Data</button>
         </div>
     );
 };

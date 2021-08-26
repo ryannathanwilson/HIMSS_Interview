@@ -9,7 +9,6 @@ from .models import Report, Reference, Payload
 import json
 from datetime import datetime
 
-
 class ReportView(viewsets.ModelViewSet):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
@@ -31,8 +30,6 @@ class ReportView(viewsets.ModelViewSet):
         
         return Response(status=status.HTTP_200_OK)
     
-    # permission_classes = [IsAuthenticated]
-
 class ReportOpenView(viewsets.ModelViewSet):
     queryset = Report.objects.filter(ticketState="OPEN")
     serializer_class = ReportNestedSerializer
@@ -45,11 +42,7 @@ class ReferenceView(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         kwargs['partial'] = True
         return super().update(request, *args, **kwargs)
-    # permission_classes = [IsAuthenticated]
 
 class PayloadView(viewsets.ModelViewSet):
     queryset = Payload.objects.all()
     serializer_class = PayloadSerializer
-    # permission_classes = [IsAuthenticated]
-
-
