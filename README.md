@@ -75,4 +75,12 @@ npm start
 - Toggle hide/show "BLOCKED" reports
 - Testing
 - Add loading state during async function operation
+- Animate card disappearing
+- Properly chain "refill data"
+- loading spinners
+
+todo: make page responsive
+todo: new title
+todo: prettier loading buttons
+todo: cleanup code!
 

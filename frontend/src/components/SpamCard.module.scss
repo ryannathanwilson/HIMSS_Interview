@@ -10,14 +10,50 @@
 	.column div + div {
 		margin-top: 1rem;
 	}
+	.details {
+		cursor: pointer;
+		color: blue;
+		text-decoration: underline;
+		position: relative;
+	}
+	.details::after {
+		content: "Do you really need details? When in doubt, block it!";
+		display: block;
+		transform: scale(0);
+		transform-origin: top left;
+		width: 10rem;
+		position: absolute;
+		top: 1.5rem;
+		left: 1.5rem;
+		padding: 1rem;
+		background-color: rgb(50,50,50);
+		border-radius: .5rem;
+		color: white;
+		line-height: 1.5rem;
+		opacity: 0;
+		transition: all 200ms ease-in;
+	}
+	.details:hover::after {
+		opacity: 1;
+		transform: scale(1);
+	}
 	
 	
 	.button {
+		box-sizing: border-box;
 		display: block;
 		width: 10rem;
 		padding: 1rem;
 		text-align: center;
 		border-radius: 1rem;
-		background-color: grey;
+		background-color: rgb(200,200,200);
+		border: solid 1px black;
+		cursor: pointer;
+	}
+	.button:hover {
+		border: solid 1px rgb(200,100,100);
+	}
+	.button:active {
+		background-color: rgb(200,100,100);
 	}
 }

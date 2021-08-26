@@ -24,8 +24,9 @@ from api import views
 
 router = DefaultRouter()
 router.register(r'reports', views.ReportView)
+router.register(r'reports_open', views.ReportOpenView)
 router.register(r'references', views.ReferenceView)
-router.register(r'payload', views.PayloadView)
+router.register(r'payloads', views.PayloadView)
 
 
 urlpatterns = [

@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from .serializers import ReportSerializer, ReferenceSerializer, PayloadSerializer
+from .serializers import ReportSerializer, ReportNestedSerializer, ReferenceSerializer, PayloadSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.mixins import UpdateModelMixin
 from .models import Report, Reference, Payload
 import json
 from datetime import datetime
@@ -12,11 +13,38 @@ from datetime import datetime
 class ReportView(viewsets.ModelViewSet):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
+
+    def update(self, request, *args, **kwargs):
+        kwargs['partial'] = True
+        return super().update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        instance = Report.objects.all()
+        reference = Reference.objects.all()
+        payload = Payload.objects.all()
+        if reference:
+            for ref in reference:
+                ref.delete()
+        if payload:
+            for pay in payload:
+                pay.delete()
+        
+        return Response(status=status.HTTP_200_OK)
+    
     # permission_classes = [IsAuthenticated]
+
+class ReportOpenView(viewsets.ModelViewSet):
+    queryset = Report.objects.filter(ticketState="OPEN")
+    serializer_class = ReportNestedSerializer
+
 
 class ReferenceView(viewsets.ModelViewSet):
     queryset = Reference.objects.all()
     serializer_class = ReferenceSerializer
+	
+    def update(self, request, *args, **kwargs):
+        kwargs['partial'] = True
+        return super().update(request, *args, **kwargs)
     # permission_classes = [IsAuthenticated]
 
 class PayloadView(viewsets.ModelViewSet):
@@ -24,78 +52,4 @@ class PayloadView(viewsets.ModelViewSet):
     serializer_class = PayloadSerializer
     # permission_classes = [IsAuthenticated]
 
-
-
-
-# @api_view(['GET'])
-# def current_user(request):
-#     """
-#     Determine the current user by their token, and return their data
-#     """
-
-#     serializer = UserSerializer(request.user)
-#     return Response(serializer.data)
-
-
-
-# @api_view(['GET'])
-# def get_money_data(request):
-#     # initialize dictionaries
-#     moneyData = {}              # return this
-#     thisMonthBudget = {}        
-#     thisMonthExpenses = {}
-#     totalRemainingBudget = {}   # sum of all budget minus all expenses
-    
-#     # get list of categories
-#     categories = ExpenseCategories.objects.all()
-
-#     # create dictionary structure
-#     for c in categories:
-#         cat = c.category
-#         thisMonthBudget[cat] = 0
-#         thisMonthExpenses[cat] = 0
-#         totalRemainingBudget[cat] = 0 
-
-#     # get current date
-#     today = datetime.today()
-#     thisMonth = today.month
-#     thisYear = today.year
-
-#     budget = Budget.objects.all() # query all budget data
-
-#     for b in budget:
-#         cat = b.category.category
-#         month = b.date.month
-#         year = b.date.year
-
-#         # put current month data into thisMonth Budget
-#         if month == thisMonth and year == thisYear:
-#             thisMonthBudget[cat] = b.budgeted_money
-        
-#         # sum all budgeted_money
-#         totalRemainingBudget[cat] += b.budgeted_money
-
-#     expenses = Expenses.objects.all() # query all expenses data
-
-#     for e in expenses:
-#         cat = e.category.category
-#         month = e.date.month
-#         year = e.date.year
-
-#         if month == thisMonth and year == thisYear:
-#             thisMonthExpenses[cat] += e.expense
-    
-#         # subtract all expenses
-#         totalRemainingBudget[cat] -= e.expense
-    
-#     # assemble data into moneyData dictionary
-#     for c in categories:
-#         cat = c.category
-#         moneyData[cat] = {
-#             "thisMonthBudget": str(thisMonthBudget[cat]),
-#             "thisMonthExpenses": str(thisMonthExpenses[cat]),
-#             "totalRemainingBudget": str(totalRemainingBudget[cat]),
-#         }
-   
-#     return Response(json.dumps(moneyData))
 
