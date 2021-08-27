@@ -17,19 +17,6 @@ class ReportView(viewsets.ModelViewSet):
         kwargs['partial'] = True
         return super().update(request, *args, **kwargs)
 
-    def delete(self, request, *args, **kwargs):
-        instance = Report.objects.all()
-        reference = Reference.objects.all()
-        payload = Payload.objects.all()
-        if reference:
-            for ref in reference:
-                ref.delete()
-        if payload:
-            for pay in payload:
-                pay.delete()
-        
-        return Response(status=status.HTTP_200_OK)
-    
 class ReportOpenView(viewsets.ModelViewSet):
     queryset = Report.objects.filter(ticketState="OPEN")
     serializer_class = ReportNestedSerializer
